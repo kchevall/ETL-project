@@ -1,0 +1,909 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/10/2024 10:28:34 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WIN-0CKIB1QUM60"
+  DTS:CreatorName="WIN-0CKIB1QUM60\Administrator"
+  DTS:DTSID="{AB101AE1-DCF0-4EC5-BFD5-2F2CE17494AB}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="STA_CallCharges"
+  DTS:PackageType="5"
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{C16C90AF-D3CC-45AB-91FC-5030D1F59FF7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{29FCE459-1EFC-444B-89DF-FECE16DDB009}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::InfoFolderPath]+"\\"+"Call Charges.csv"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1036"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\Administrator\Documents\SQL Server Management Studio\SSIS\ETLProject-Data\Call Charges.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Call Type "
+              DTS:DTSID="{0C439813-6175-45ED-9185-8B9E5BB9E9C7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Call Charges (2018)"
+              DTS:DTSID="{DB058AF4-E60F-4708-8ED8-409B549AE9D3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Call Charges (2019)"
+              DTS:DTSID="{5981FD2F-6C16-46D9-95E2-FA638089101B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Call Charges (2020)"
+              DTS:DTSID="{720720D4-9E1A-4A91-9574-A90322716732}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Call Charges (2021)"
+              DTS:DTSID="{C6F027DC-8BFD-4BB7-9948-F209F2B7473E}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT - STA_CallCharges"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F83B50E5-7D88-45F1-AB9A-221BD3E21685}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT - STA_CallCharges"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT - STA_CallCharges\CSPL - Remove empty rows"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="CSPL - Remove empty rows"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - STA_CallCharges\CSPL - Remove empty rows.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - STA_CallCharges\CSPL - Remove empty rows.Inputs[Conditional Split Input].Columns[Call Type ]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Call Type "
+                      lineageId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].Columns[Call Type ]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - STA_CallCharges\CSPL - Remove empty rows.Outputs[NonEmptyRows]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="NonEmptyRows"
+                  synchronousInputId="Package\DFT - STA_CallCharges\CSPL - Remove empty rows.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].Columns[Call Type ]} != ""</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">[Call Type ] != ""</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - STA_CallCharges\CSPL - Remove empty rows.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\DFT - STA_CallCharges\CSPL - Remove empty rows.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - STA_CallCharges\CSPL - Remove empty rows.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\DFT - STA_CallCharges\CSPL - Remove empty rows.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - STA_CallCharges\CSPL - Remove empty rows.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - STA_CallCharges\CSPL - Remove empty rows.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - STA_CallCharges\CSPL - Remove empty rows.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - STA_CallCharges\CSPL - Remove empty rows.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1036"
+              name="FF_SRC - STA_CallCharges"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].Columns[Call Type ]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].ExternalColumns[Call Type ]"
+                      length="255"
+                      lineageId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].Columns[Call Type ]"
+                      name="Call Type "
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].Columns[Call Charges (2018)]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].ExternalColumns[Call Charges (2018)]"
+                      length="255"
+                      lineageId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].Columns[Call Charges (2018)]"
+                      name="Call Charges (2018)"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].Columns[Call Charges (2019)]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].ExternalColumns[Call Charges (2019)]"
+                      length="255"
+                      lineageId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].Columns[Call Charges (2019)]"
+                      name="Call Charges (2019)"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].Columns[Call Charges (2020)]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].ExternalColumns[Call Charges (2020)]"
+                      length="255"
+                      lineageId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].Columns[Call Charges (2020)]"
+                      name="Call Charges (2020)"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].Columns[Call Charges (2021)]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].ExternalColumns[Call Charges (2021)]"
+                      length="255"
+                      lineageId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].Columns[Call Charges (2021)]"
+                      name="Call Charges (2021)"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].ExternalColumns[Call Type ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Call Type " />
+                    <externalMetadataColumn
+                      refId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].ExternalColumns[Call Charges (2018)]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Call Charges (2018)" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].ExternalColumns[Call Charges (2019)]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Call Charges (2019)" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].ExternalColumns[Call Charges (2020)]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Call Charges (2020)" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].ExternalColumns[Call Charges (2021)]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Call Charges (2021)" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DST - STA_CallCharges"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[CallCharges]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges.Connections[OleDbConnection]"
+                  connectionManagerID="{700736B9-0861-444E-9580-10680E846158}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ServiceSpot.SS_STA]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges.Inputs[OLE DB Destination Input].Columns[Year]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Year"
+                      externalMetadataColumnId="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                      lineageId="Package\DFT - STA_CallCharges\UPVT - Year column.Outputs[Unpivot Output].Columns[Year]" />
+                    <inputColumn
+                      refId="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges.Inputs[OLE DB Destination Input].Columns[CallType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="CallType"
+                      externalMetadataColumnId="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges.Inputs[OLE DB Destination Input].ExternalColumns[CallType]"
+                      lineageId="Package\DFT - STA_CallCharges\UPVT - Year column.Outputs[Unpivot Output].Columns[CallType]" />
+                    <inputColumn
+                      refId="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges.Inputs[OLE DB Destination Input].Columns[CallCharges]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="CallCharges"
+                      externalMetadataColumnId="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges.Inputs[OLE DB Destination Input].ExternalColumns[CallCharges]"
+                      lineageId="Package\DFT - STA_CallCharges\UPVT - Year column.Outputs[Unpivot Output].Columns[CallCharges]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                      dataType="wstr"
+                      length="255"
+                      name="Year" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges.Inputs[OLE DB Destination Input].ExternalColumns[CallType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CallType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges.Inputs[OLE DB Destination Input].ExternalColumns[CallCharges]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CallCharges" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - STA_CallCharges\UPVT - Year column"
+              componentClassID="Microsoft.UnPivot"
+              contactInfo="Unpivot;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Expands an un-normalized data flow into a more normalized version. Values from multiple columns of a single record expand to multiple records in a single column. For example, expand a table that lists athletic scores with a column for each game to more records and a single score column."
+              name="UPVT - Year column">
+              <inputs>
+                <input
+                  refId="Package\DFT - STA_CallCharges\UPVT - Year column.Inputs[Unpivot Input]"
+                  hasSideEffects="true"
+                  name="Unpivot Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - STA_CallCharges\UPVT - Year column.Inputs[Unpivot Input].Columns[Call Type ]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Call Type "
+                      lineageId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].Columns[Call Type ]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The lineage ID of the output column that will receive the value from this input column. Or -1 if column's value is not used in output rows."
+                          name="DestinationColumn">#{Package\DFT - STA_CallCharges\UPVT - Year column.Outputs[Unpivot Output].Columns[CallType]}</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the value written to the PivotKey column in the output row."
+                          expressionType="Notify"
+                          name="PivotKeyValue" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - STA_CallCharges\UPVT - Year column.Inputs[Unpivot Input].Columns[Call Charges (2018)]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Call Charges (2018)"
+                      lineageId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].Columns[Call Charges (2018)]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The lineage ID of the output column that will receive the value from this input column. Or -1 if column's value is not used in output rows."
+                          name="DestinationColumn">#{Package\DFT - STA_CallCharges\UPVT - Year column.Outputs[Unpivot Output].Columns[CallCharges]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the value written to the PivotKey column in the output row."
+                          expressionType="Notify"
+                          name="PivotKeyValue">2018</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - STA_CallCharges\UPVT - Year column.Inputs[Unpivot Input].Columns[Call Charges (2019)]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Call Charges (2019)"
+                      lineageId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].Columns[Call Charges (2019)]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The lineage ID of the output column that will receive the value from this input column. Or -1 if column's value is not used in output rows."
+                          name="DestinationColumn">#{Package\DFT - STA_CallCharges\UPVT - Year column.Outputs[Unpivot Output].Columns[CallCharges]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the value written to the PivotKey column in the output row."
+                          expressionType="Notify"
+                          name="PivotKeyValue">2019</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - STA_CallCharges\UPVT - Year column.Inputs[Unpivot Input].Columns[Call Charges (2020)]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Call Charges (2020)"
+                      lineageId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].Columns[Call Charges (2020)]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The lineage ID of the output column that will receive the value from this input column. Or -1 if column's value is not used in output rows."
+                          name="DestinationColumn">#{Package\DFT - STA_CallCharges\UPVT - Year column.Outputs[Unpivot Output].Columns[CallCharges]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the value written to the PivotKey column in the output row."
+                          expressionType="Notify"
+                          name="PivotKeyValue">2020</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - STA_CallCharges\UPVT - Year column.Inputs[Unpivot Input].Columns[Call Charges (2021)]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Call Charges (2021)"
+                      lineageId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output].Columns[Call Charges (2021)]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The lineage ID of the output column that will receive the value from this input column. Or -1 if column's value is not used in output rows."
+                          name="DestinationColumn">#{Package\DFT - STA_CallCharges\UPVT - Year column.Outputs[Unpivot Output].Columns[CallCharges]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the value written to the PivotKey column in the output row."
+                          expressionType="Notify"
+                          name="PivotKeyValue">2021</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - STA_CallCharges\UPVT - Year column.Outputs[Unpivot Output]"
+                  name="Unpivot Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - STA_CallCharges\UPVT - Year column.Outputs[Unpivot Output].Columns[Year]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT - STA_CallCharges\UPVT - Year column.Outputs[Unpivot Output].Columns[Year]"
+                      name="Year">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the value in the PivotKeyValue property is written to the column in the new row."
+                          name="PivotKey">true</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - STA_CallCharges\UPVT - Year column.Outputs[Unpivot Output].Columns[CallType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\DFT - STA_CallCharges\UPVT - Year column.Outputs[Unpivot Output].Columns[CallType]"
+                      name="CallType">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the value in the PivotKeyValue property is written to the column in the new row."
+                          name="PivotKey">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - STA_CallCharges\UPVT - Year column.Outputs[Unpivot Output].Columns[CallCharges]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\DFT - STA_CallCharges\UPVT - Year column.Outputs[Unpivot Output].Columns[CallCharges]"
+                      name="CallCharges">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the value in the PivotKeyValue property is written to the column in the new row."
+                          name="PivotKey">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT - STA_CallCharges.Paths[Flat File Source Output]"
+              endId="Package\DFT - STA_CallCharges\CSPL - Remove empty rows.Inputs[Conditional Split Input]"
+              name="Flat File Source Output"
+              startId="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges.Outputs[Flat File Source Output]" />
+            <path
+              refId="Package\DFT - STA_CallCharges.Paths[NonEmptyRows]"
+              endId="Package\DFT - STA_CallCharges\UPVT - Year column.Inputs[Unpivot Input]"
+              name="NonEmptyRows"
+              startId="Package\DFT - STA_CallCharges\CSPL - Remove empty rows.Outputs[NonEmptyRows]" />
+            <path
+              refId="Package\DFT - STA_CallCharges.Paths[Unpivot Output]"
+              endId="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges.Inputs[OLE DB Destination Input]"
+              name="Unpivot Output"
+              startId="Package\DFT - STA_CallCharges\UPVT - Year column.Outputs[Unpivot Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Truncate STA_CallCharges"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{29F49FCD-EFF9-43CC-9699-9D65DDF00F92}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Truncate STA_CallCharges"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{700736B9-0861-444E-9580-10680E846158}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.CallCharges" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{A902223C-D36F-454D-BCDA-986A08B3093B}"
+      DTS:From="Package\SQL - Truncate STA_CallCharges"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DFT - STA_CallCharges" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="198,42"
+          Id="Package\DFT - STA_CallCharges"
+          TopLeft="208,154" />
+        <NodeLayout
+          Size="245,42"
+          Id="Package\SQL - Truncate STA_CallCharges"
+          TopLeft="185,51" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="307.25,93">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT - STA_CallCharges">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="180,42"
+          Id="Package\DFT - STA_CallCharges\UPVT - Year column"
+          TopLeft="177,251" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\DFT - STA_CallCharges\CSPL - Remove empty rows"
+          TopLeft="164,145" />
+        <NodeLayout
+          Size="227,42"
+          Id="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges"
+          TopLeft="159,357" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\DFT - STA_CallCharges\FF_SRC - STA_CallCharges"
+          TopLeft="165,60" />
+        <EdgeLayout
+          Id="Package\DFT - STA_CallCharges.Paths[Flat File Source Output]"
+          TopLeft="273.5,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - STA_CallCharges.Paths[Unpivot Output]"
+          TopLeft="269.75,293">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,64"
+              Start="0,0"
+              End="0,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - STA_CallCharges.Paths[NonEmptyRows]"
+          TopLeft="269.75,187">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,64"
+              Start="0,0"
+              End="0,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-35.067578125,22.60888671875,70.13515625,11.2822265625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - STA_CallCharges\OLE_DST - STA_CallCharges">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="ServiceSpot.SS_DWH"
+  DTS:DTSID="{0282CC14-E267-48EC-AE4C-C91C2DE60FF3}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=ServiceSpot;Initial Catalog=SS_DWH;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-dwhproject-{0282CC14-E267-48EC-AE4C-C91C2DE60FF3}ServiceSpot.SS_DWH;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
