@@ -11,8 +11,8 @@
   DTS:LocaleID="1036"
   DTS:ObjectName="STA_Data"
   DTS:PackageType="5"
-  DTS:VersionBuild="17"
-  DTS:VersionGUID="{AB610A93-C7A1-47A8-8653-0D855FCD1411}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{E50C0B95-F7CA-4BA5-BD0C-EEAA28069F4F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -32,7 +32,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="C:\Users\Administrator\Documents\SQL Server Management Studio\SSIS\ETLProject-Data\Calls data\">
+          DTS:ConnectionString="C:\DWH_ETL_Project\Calls data\">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -113,7 +113,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="FilePath">
       <DTS:VariableValue
-        DTS:DataType="8">C:\Users\Administrator\Documents\SQL Server Management Studio\SSIS\ETLProject-Data\Calls data\</DTS:VariableValue>
+        DTS:DataType="8">C:\DWH_ETL_Project\Calls data\</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -124,7 +124,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="FolderPath">
       <DTS:VariableValue
-        DTS:DataType="8">C:\Users\Administrator\Documents\SQL Server Management Studio\SSIS\ETLProject-Data\Calls data</DTS:VariableValue>
+        DTS:DataType="8">C:\DWH_ETL_Project\Calls data</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
@@ -143,7 +143,7 @@
         <DTS:ObjectData>
           <ForEachFileEnumeratorProperties>
             <FEFEProperty
-              Folder="C:\Users\Administrator\Documents\SQL Server Management Studio\SSIS\ETLProject-Data\Calls data" />
+              Folder="C:\Users\Administrator\source\repos\ETL-project\Data source\Calls data" />
             <FEFEProperty
               FileSpec="*.csv" />
             <FEFEProperty
@@ -604,8 +604,8 @@
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{A3E1131B-21B6-4382-B0A6-1A767EDBC957}"
-          DTS:ObjectName="{A3E1131B-21B6-4382-B0A6-1A767EDBC957}"
+          DTS:DTSID="{454CE314-35EC-4C76-89FC-853B008A90A3}"
+          DTS:ObjectName="{454CE314-35EC-4C76-89FC-853B008A90A3}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::FileName" />
       </DTS:ForEachVariableMappings>

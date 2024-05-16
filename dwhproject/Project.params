@@ -16,7 +16,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">C:\DWH_ETL_Project\Calls data</SSIS:Property>
+        SSIS:Name="Value">C:\Users\Administrator\source\repos\ETL-project\Data source\Calls data</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
@@ -37,7 +37,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">C:\DWH_ETL_Project</SSIS:Property>
+        SSIS:Name="Value">C:\Users\Administrator\source\repos\ETL-project\Data source</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
