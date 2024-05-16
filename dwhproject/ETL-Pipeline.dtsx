@@ -1,0 +1,536 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/16/2024 2:32:05 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WIN-0CKIB1QUM60"
+  DTS:CreatorName="WIN-0CKIB1QUM60\Administrator"
+  DTS:DTSID="{EFB55CD6-8B4E-4E07-A8CE-E8998195C34B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{C0BAE7CF-8887-4CC3-9685-21CCA06A5580}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ServiceSpot connection]"
+      DTS:CreationName="ADO.NET:SQL"
+      DTS:DTSID="{2FB057A6-9293-4A3C-A424-8BCB8F2552FE}"
+      DTS:ObjectName="ServiceSpot connection">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ServiceSpot;Integrated Security=SSPI;Connect Timeout=30;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SEQC - Create SQL tables"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{DABE5B2A-EE56-441B-B1C6-4F6AC9310E34}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC - Create SQL tables">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Create SQL tables\TSQL - All queries"
+          DTS:CreationName="Microsoft.DbMaintenanceTSQLExecuteTask"
+          DTS:Description="Execute T-SQL Statement Task"
+          DTS:DTSID="{2D1B9A1B-8E1D-430E-A07A-02381DED9AF5}"
+          DTS:ExecutableType="Microsoft.DbMaintenanceTSQLExecuteTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TSQL - All queries"
+          DTS:TaskContact="Execute T-SQL Statement Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{2FB057A6-9293-4A3C-A424-8BCB8F2552FE}"
+              SQLTask:SqlStatementSource="USE [SS_ADM]&#xA;&#xA;GO&#xA;&#xA;CREATE TABLE [TechnicalRejects] (&#xA;    [RejectDate] datetime,&#xA;    [RejectPackageAndTask] nvarchar(255),&#xA;    [RejectColumn] nvarchar(255),&#xA;    [RejectValue] nvarchar(255)&#xA;)&#xA;&#xA;CREATE TABLE [FunctionalRejects] (&#xA;    [RejectDate] datetime,&#xA;    [RejectPackageAndTask] nvarchar(205),&#xA;    [RejectColumn] nvarchar(255),&#xA;    [RejectDescription] nvarchar(255),&#xA;    [Number_of_cases] numeric(20,0)&#xA;)&#xA;&#xA;GO&#xA;&#xA;&#xA;USE [SS_STA]&#xA;&#xA;GO&#xA;&#xA;CREATE TABLE [USStates] (&#xA;    [StateCD] varchar(255),&#xA;    [Name] varchar(255),&#xA;    [Region] varchar(255)&#xA;)&#xA;&#xA;CREATE TABLE [CallTypes] (&#xA;    [CallTypeID] varchar(255),&#xA;    [CallTypeLabel] varchar(255)&#xA;)&#xA;&#xA;CREATE TABLE [CallCharges] (&#xA;    [Year] nvarchar(255),&#xA;    [CallType] varchar(255),&#xA;    [CallCharges] varchar(255)&#xA;)&#xA;&#xA;CREATE TABLE [Employees] (&#xA;    [EmployeeID] varchar(255),&#xA;    [EmployeeName] varchar(255),&#xA;    [Site] varchar(255),&#xA;    [ManagerName] varchar(255)&#xA;)&#xA;&#xA;CREATE TABLE [Data] (&#xA;    [CallTimestamp] varchar(255),&#xA;    [CallType] varchar(255),&#xA;    [EmployeeID] varchar(255),&#xA;    [CallDuration] varchar(255),&#xA;    [WaitTime] varchar(255),&#xA;    [CallAbandoned] varchar(255)&#xA;)&#xA;&#xA;GO&#xA;&#xA;&#xA;USE [SS_ODS]&#xA;&#xA;GO&#xA;&#xA;CREATE TABLE [CallInfos] (&#xA;&#x9;[Year] numeric(20,0),&#xA;    [CallTypeID] varchar(255),&#xA;    [CallType] varchar(50),&#xA;    [CallCharges] numeric(18,2)    &#xA;)&#xA;&#xA;CREATE TABLE [Employees] (&#xA;    [EmployeeID] varchar(10),&#xA;    [FirstName] varchar(50),&#xA;    [LastName] varchar(50),&#xA;    [E-mail address] nvarchar(110),&#xA;    [ManagerName] varchar(100),&#xA;    [Site] varchar(50),&#xA;    [StateCD] varchar(10),&#xA;    [StateName] varchar(50),&#xA;    [Region] varchar(50)&#xA;)&#xA;&#xA;CREATE TABLE [Data] (&#xA;&#x9;[Year] numeric(20,0),&#xA;    [CallDate] date,  &#xA;    [CallTimestamp] time(0),&#xA;    [EmployeeID] varchar(10),&#xA;    [CallType] varchar(10),&#xA;    [DurationMinutes] int,&#xA;    [DurationSeconds] tinyint,&#xA;    [WaitTime] int,&#xA;    [WithinSLA] bit,&#xA;    [CallAbandoned] bit&#xA;)&#xA;&#xA;GO&#xA;&#xA;&#xA;USE [SS_DWH]&#xA;&#xA;GO&#xA;&#xA;CREATE TABLE [DimCallInfos] (&#xA;&#x9;[CallInfosSurrKey] INT PRIMARY KEY IDENTITY(1,1),&#xA;&#x9;[Year] numeric(20,0),&#xA;    [CallTypeID] varchar(255),&#xA;    [CallType] varchar(50),&#xA;    [CallCharges] numeric(18,2)    &#xA;)&#xA;&#xA;CREATE TABLE [DimEmployees] (&#xA;&#x9;[EmployeeSurrKey] INT PRIMARY KEY IDENTITY(1,1),&#xA;    [EmployeeID] varchar(10),&#xA;    [FirstName] varchar(50),&#xA;    [LastName] varchar(50),&#xA;    [E-mail address] nvarchar(110),&#xA;    [ManagerName] varchar(100),&#xA;    [Site] varchar(50),&#xA;    [StateCD] varchar(10),&#xA;    [StateName] varchar(50),&#xA;    [Region] varchar(50)&#xA;)&#xA;&#xA;CREATE TABLE [FactData] (&#xA;    [EmployeeSurrogateKey] int,&#xA;    [CallInfosSurrogateKey] int,&#xA;    [CallDateKey] int,&#xA;&#x9;[CallTimestamp] time(0),&#xA;    [DurationMinutes] int,&#xA;    [DurationSeconds] tinyint,&#xA;    [WaitTime] int,&#xA;    [WithinSLA] bit,&#xA;    [CallAbandoned] bit&#xA;)&#xA;&#xA;CREATE TABLE dbo.DimDate (&#xA;   DateKey INT NOT NULL PRIMARY KEY,&#xA;   [Date] DATE NOT NULL,&#xA;   [Day] TINYINT NOT NULL,&#xA;   [DaySuffix] CHAR(2) NOT NULL,&#xA;   [Weekday] TINYINT NOT NULL,&#xA;   [WeekDayName] VARCHAR(10) NOT NULL,&#xA;   [WeekDayName_Short] CHAR(3) NOT NULL,&#xA;   [WeekDayName_FirstLetter] CHAR(1) NOT NULL,&#xA;   [DOWInMonth] TINYINT NOT NULL,&#xA;   [DayOfYear] SMALLINT NOT NULL,&#xA;   [WeekOfMonth] TINYINT NOT NULL,&#xA;   [WeekOfYear] TINYINT NOT NULL,&#xA;   [Month] TINYINT NOT NULL,&#xA;   [MonthName] VARCHAR(10) NOT NULL,&#xA;   [MonthName_Short] CHAR(3) NOT NULL,&#xA;   [MonthName_FirstLetter] CHAR(1) NOT NULL,&#xA;   [Quarter] TINYINT NOT NULL,&#xA;   [QuarterName] VARCHAR(6) NOT NULL,&#xA;   [Year] INT NOT NULL,&#xA;   [MMYYYY] CHAR(6) NOT NULL,&#xA;   [MonthYear] CHAR(7) NOT NULL,&#xA;   IsWeekend BIT NOT NULL,&#xA;   )&#xA;&#xA;  &#xA;   GO&#xA;&#xA;&#xA;   SET NOCOUNT ON&#xA;&#xA;TRUNCATE TABLE DimDate&#xA;&#xA;DECLARE @CurrentDate DATE = '2018-01-01'&#xA;DECLARE @EndDate DATE = '2023-12-31'&#xA;&#xA;WHILE @CurrentDate &lt; @EndDate&#xA;BEGIN&#xA;   INSERT INTO [dbo].[DimDate] (&#xA;      [DateKey],&#xA;      [Date],&#xA;      [Day],&#xA;      [DaySuffix],&#xA;      [Weekday],&#xA;      [WeekDayName],&#xA;      [WeekDayName_Short],&#xA;      [WeekDayName_FirstLetter],&#xA;      [DOWInMonth],&#xA;      [DayOfYear],&#xA;      [WeekOfMonth],&#xA;      [WeekOfYear],&#xA;      [Month],&#xA;      [MonthName],&#xA;      [MonthName_Short],&#xA;      [MonthName_FirstLetter],&#xA;      [Quarter],&#xA;      [QuarterName],&#xA;      [Year],&#xA;      [MMYYYY],&#xA;      [MonthYear],&#xA;      [IsWeekend]&#xA;      )&#xA;   SELECT DateKey = YEAR(@CurrentDate) * 10000 + MONTH(@CurrentDate) * 100 + DAY(@CurrentDate),&#xA;      DATE = @CurrentDate,&#xA;      Day = DAY(@CurrentDate),&#xA;      [DaySuffix] = CASE &#xA;         WHEN DAY(@CurrentDate) = 1&#xA;            OR DAY(@CurrentDate) = 21&#xA;            OR DAY(@CurrentDate) = 31&#xA;            THEN 'st'&#xA;         WHEN DAY(@CurrentDate) = 2&#xA;            OR DAY(@CurrentDate) = 22&#xA;            THEN 'nd'&#xA;         WHEN DAY(@CurrentDate) = 3&#xA;            OR DAY(@CurrentDate) = 23&#xA;            THEN 'rd'&#xA;         ELSE 'th'&#xA;         END,&#xA;      WEEKDAY = DATEPART(dw, @CurrentDate),&#xA;      WeekDayName = DATENAME(dw, @CurrentDate),&#xA;      WeekDayName_Short = UPPER(LEFT(DATENAME(dw, @CurrentDate), 3)),&#xA;      WeekDayName_FirstLetter = LEFT(DATENAME(dw, @CurrentDate), 1),&#xA;      [DOWInMonth] = DAY(@CurrentDate),&#xA;      [DayOfYear] = DATENAME(dy, @CurrentDate),&#xA;      [WeekOfMonth] = DATEPART(WEEK, @CurrentDate) - DATEPART(WEEK, DATEADD(MM, DATEDIFF(MM, 0, @CurrentDate), 0)) + 1,&#xA;      [WeekOfYear] = DATEPART(wk, @CurrentDate),&#xA;      [Month] = MONTH(@CurrentDate),&#xA;      [MonthName] = DATENAME(mm, @CurrentDate),&#xA;      [MonthName_Short] = UPPER(LEFT(DATENAME(mm, @CurrentDate), 3)),&#xA;      [MonthName_FirstLetter] = LEFT(DATENAME(mm, @CurrentDate), 1),&#xA;      [Quarter] = DATEPART(q, @CurrentDate),&#xA;      [QuarterName] = CASE &#xA;         WHEN DATENAME(qq, @CurrentDate) = 1&#xA;            THEN 'First'&#xA;         WHEN DATENAME(qq, @CurrentDate) = 2&#xA;            THEN 'second'&#xA;         WHEN DATENAME(qq, @CurrentDate) = 3&#xA;            THEN 'third'&#xA;         WHEN DATENAME(qq, @CurrentDate) = 4&#xA;            THEN 'fourth'&#xA;         END,&#xA;      [Year] = YEAR(@CurrentDate),&#xA;      [MMYYYY] = RIGHT('0' + CAST(MONTH(@CurrentDate) AS VARCHAR(2)), 2) + CAST(YEAR(@CurrentDate) AS VARCHAR(4)),&#xA;      [MonthYear] = CAST(YEAR(@CurrentDate) AS VARCHAR(4)) + UPPER(LEFT(DATENAME(mm, @CurrentDate), 3)),&#xA;      [IsWeekend] = CASE &#xA;         WHEN DATENAME(dw, @CurrentDate) = 'Sunday'&#xA;            OR DATENAME(dw, @CurrentDate) = 'Saturday'&#xA;            THEN 1&#xA;         ELSE 0&#xA;         END&#xA;&#xA;   SET @CurrentDate = DATEADD(DD, 1, @CurrentDate)&#xA;END&#xA;&#xA;&#xA;GO"
+              SQLTask:ServerVersion="9"
+              SQLTask:ExtendedLogging="True"
+              SQLTask:LocalConnectionForLogging=""
+              SQLTask:TaskName=""
+              SQLTask:IgnoreDatabasesInNotOnlineState="False" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SEQC - Deploy_DWH"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{59787BD1-E35D-45DB-B6B2-4A482AEF32A6}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC - Deploy_DWH">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Deploy_DWH\EPT - DWH_DimCallInfos"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{D92A4D16-896C-4F6D-94CA-D6DEF77BEFBE}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EPT - DWH_DimCallInfos"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>DWH_DimCallInfos.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Deploy_DWH\EPT - DWH_DimEmployees"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{9A62446D-973F-4136-8D75-2A719A82A870}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EPT - DWH_DimEmployees"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>DWH_DimEmployees.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Deploy_DWH\EPT - DWH_FactData"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{117D7BF4-316F-435C-97A2-39B0249B45B4}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EPT - DWH_FactData"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>DWH_FactData.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Deploy_DWH.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{B27A7160-EE66-4ED2-ABC6-A3CB63C23221}"
+          DTS:From="Package\SEQC - Deploy_DWH\EPT - DWH_DimCallInfos"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\SEQC - Deploy_DWH\EPT - DWH_DimEmployees" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Deploy_DWH.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{7200600A-1BE9-422F-A051-B182B384A346}"
+          DTS:From="Package\SEQC - Deploy_DWH\EPT - DWH_DimEmployees"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\SEQC - Deploy_DWH\EPT - DWH_FactData" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SEQC - Deploy_ODS"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{9EB6DAC6-B21D-47FF-8F75-35AAF9AF8CA5}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC - Deploy_ODS">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Deploy_ODS\EPT - ODS_CallInfos"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{080FE381-A05A-4E7E-88DD-D12B581888D2}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EPT - ODS_CallInfos"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>ODS_CallInfos.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Deploy_ODS\EPT - ODS_Data"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{BB1225B1-72CB-48FA-BD85-C6CA6C21ACBF}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EPT - ODS_Data"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>ODS_Data.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Deploy_ODS\EPT - ODS_Employees"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{ABA6E00C-37FC-4F67-A242-53743710B629}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EPT - ODS_Employees"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>ODS_Employees.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SEQC - Deploy_STA"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{6D52B231-4F10-4F1A-A6C5-17FF14C9E346}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC - Deploy_STA">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Deploy_STA\EPT - STA_CallCharges"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{ED331394-4110-4D72-98E6-5D64A7F3E7E8}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EPT - STA_CallCharges"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>STA_CallCharges.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Deploy_STA\EPT - STA_CallTypes"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{32C0BB3E-E13A-41B0-9B8D-D7B7B6A5A0F1}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EPT - STA_CallTypes"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>STA_CallTypes.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Deploy_STA\EPT - STA_Data"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{A6D35F65-9BAC-42B9-91FA-9BFAEC162C6C}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EPT - STA_Data"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>STA_Data.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Deploy_STA\EPT - STA_Employees"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{255DA5F2-327E-40A5-B829-BF4FF40E185E}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EPT - STA_Employees"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>STA_Employees.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Deploy_STA\EPT - STA_USStates"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{E5259052-2154-4844-B736-920F36FFC213}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EPT - STA_USStates"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>STA_USStates.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{665C6EE0-C0E2-4C15-AD49-87CCC27DD896}"
+      DTS:From="Package\SEQC - Create SQL tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\SEQC - Deploy_STA" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{33FC6570-3A0D-4F7F-99FB-C0C11FA76F94}"
+      DTS:From="Package\SEQC - Deploy_STA"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SEQC - Deploy_ODS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{C56FEDFD-2B80-4009-9387-5AE32400624C}"
+      DTS:From="Package\SEQC - Deploy_ODS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SEQC - Deploy_DWH" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="169,42"
+          Id="Package\SEQC - Create SQL tables\TSQL - All queries"
+          TopLeft="14,29" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="201,99"
+          Size="201,142"
+          Id="Package\SEQC - Create SQL tables"
+          TopLeft="35,28" />
+        <NodeLayout
+          Size="205,42"
+          Id="Package\SEQC - Deploy_DWH\EPT - DWH_DimCallInfos"
+          TopLeft="21,31" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\SEQC - Deploy_DWH\EPT - DWH_DimEmployees"
+          TopLeft="16,103" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\SEQC - Deploy_DWH\EPT - DWH_FactData"
+          TopLeft="27,176" />
+        <EdgeLayout
+          Id="Package\SEQC - Deploy_DWH.PrecedenceConstraints[Constraint]"
+          TopLeft="123.75,73">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30"
+              Start="0,0"
+              End="0,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Deploy_DWH.PrecedenceConstraints[Constraint 1]"
+          TopLeft="122.25,145">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31"
+              Start="0,0"
+              End="0,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="243,273"
+          Size="243,316"
+          Id="Package\SEQC - Deploy_DWH"
+          TopLeft="610,246" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\SEQC - Deploy_ODS\EPT - ODS_CallInfos"
+          TopLeft="28,26" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\SEQC - Deploy_ODS\EPT - ODS_Data"
+          TopLeft="32,177" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\SEQC - Deploy_ODS\EPT - ODS_Employees"
+          TopLeft="14,105" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="226,247"
+          Size="226,290"
+          Id="Package\SEQC - Deploy_ODS"
+          TopLeft="332,258" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package\SEQC - Deploy_STA\EPT - STA_CallCharges"
+          TopLeft="32,18" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\SEQC - Deploy_STA\EPT - STA_CallTypes"
+          TopLeft="32,74" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\SEQC - Deploy_STA\EPT - STA_Data"
+          TopLeft="32,251" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\SEQC - Deploy_STA\EPT - STA_Employees"
+          TopLeft="29,135" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\SEQC - Deploy_STA\EPT - STA_USStates"
+          TopLeft="30,197" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="253,309"
+          Size="253,352"
+          Id="Package\SEQC - Deploy_STA"
+          TopLeft="16,225" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="139,170">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55"
+              Start="0,0"
+              End="0,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="269,402">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="63,0"
+              Start="0,0"
+              End="55.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="55.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="558,403.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="52,0"
+              Start="0,0"
+              End="44.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="44.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
