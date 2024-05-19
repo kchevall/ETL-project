@@ -1,7 +1,7 @@
 CREATE TABLE [Employees] (
     [EmployeeID] varchar(10),
-    [FirstName] varchar(50),
-    [LastName] varchar(50),
+    [FirstName] nvarchar(50),
+    [LastName] nvarchar(50),
     [E-mail address] nvarchar(110),
     [ManagerName] varchar(100),
     [Site] varchar(50),

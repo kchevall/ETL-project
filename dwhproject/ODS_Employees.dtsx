@@ -11,8 +11,8 @@
   DTS:LocaleID="1036"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="22"
-  DTS:VersionGUID="{ED57EAA2-A3B0-44A0-8184-30FE2D993F0D}">
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{E950B5BF-5469-4AA6-AE58-6263560B6F91}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -138,8 +138,7 @@
                     </outputColumn>
                     <outputColumn
                       refId="Package\DFT - ODS Employees\DCNV - Resizing.Outputs[Data Conversion Output].Columns[FirstName_R]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="50"
@@ -160,8 +159,7 @@
                     </outputColumn>
                     <outputColumn
                       refId="Package\DFT - ODS Employees\DCNV - Resizing.Outputs[Data Conversion Output].Columns[LastName_R]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="50"
@@ -1029,16 +1027,14 @@ where [refTable].[StateCD] = ?</property>
                       lineageId="Package\DFT - ODS Employees\DCNV - Resizing.Outputs[Data Conversion Output].Columns[EmployeeID_R]" />
                     <inputColumn
                       refId="Package\DFT - ODS Employees\OLE_DST - ODS Employees.Inputs[OLE DB Destination Input].Columns[FirstName_R]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
+                      cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="FirstName_R"
                       externalMetadataColumnId="Package\DFT - ODS Employees\OLE_DST - ODS Employees.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
                       lineageId="Package\DFT - ODS Employees\DCNV - Resizing.Outputs[Data Conversion Output].Columns[FirstName_R]" />
                     <inputColumn
                       refId="Package\DFT - ODS Employees\OLE_DST - ODS Employees.Inputs[OLE DB Destination Input].Columns[LastName_R]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
+                      cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="LastName_R"
                       externalMetadataColumnId="Package\DFT - ODS Employees\OLE_DST - ODS Employees.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
@@ -1113,14 +1109,12 @@ where [refTable].[StateCD] = ?</property>
                       name="ManagerName" />
                     <externalMetadataColumn
                       refId="Package\DFT - ODS Employees\OLE_DST - ODS Employees.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="50"
                       name="FirstName" />
                     <externalMetadataColumn
                       refId="Package\DFT - ODS Employees\OLE_DST - ODS Employees.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="50"
                       name="LastName" />
                     <externalMetadataColumn
